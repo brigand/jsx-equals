@@ -1,0 +1,29 @@
+{
+  "name": "jsx-equals",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel/register",
+    "prepublish": "babel src --out-dir lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brigand/jsx-equals.git"
+  },
+  "author": "Frankie Bagnardi <f.bagnardi@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brigand/jsx-equals/issues"
+  },
+  "homepage": "https://github.com/brigand/jsx-equals#readme",
+  "dependencies": {
+    "shallow-diff": "0.0.5"
+  },
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "chai": "^3.2.0",
+    "mocha": "^2.3.2",
+    "react": "^0.13.3"
+  }
+}
