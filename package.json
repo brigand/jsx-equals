@@ -2,7 +2,7 @@
   "name": "jsx-equals",
   "version": "0.2.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "mocha --compilers js:babel/register",
     "prepublish": "babel src --out-dir lib"
