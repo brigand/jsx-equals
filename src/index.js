@@ -8,7 +8,7 @@ const ANY = jsxEquals.ANY = function JsxEqualsAny(){};
 export default function jsxEquals(original, template, opts={}, state={path: ''}){
   function makeError(msg, ...values){
     var res = msg.replace(/%(\d+)/g, (m, index) => {
-      return inspect(values[index]);
+      return inspect(values[index], {depth: 5});
     });
 
     res = `jsxEquals at path ${inspect(state.path)}: ${res}`;
