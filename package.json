@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/brigand/jsx-equals#readme",
   "dependencies": {
+    "deep-equal": "^1.0.1",
     "shallow-diff": "0.0.5"
   },
   "devDependencies": {

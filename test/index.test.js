@@ -45,7 +45,7 @@ describe('jsxEquals', () => {
           </table>
         </span>
         <C1>
-          <input value="foo" />
+          <input value="foo" onChange={() => {}} />
         </C1>
       </div>
     );
@@ -93,9 +93,16 @@ describe('jsxEquals', () => {
           </table>
         </span>
         <C1>
-          <input value="foo" />
+          <input value="foo" onChange={() => {}} />
         </C1>
       </div>
+    );
+  });
+
+  it('works with deep properties', () => {
+    jsxEquals(
+      <div x={{x: 1}} />,
+      <div x={{x: 1}} />
     );
   });
 

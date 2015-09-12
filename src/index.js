@@ -1,6 +1,7 @@
 import {Children} from 'react';
 import {inspect} from 'util';
 import shallowDiff from 'shallow-diff';
+import deepEquals from 'deep-equal';
 
 const ANY = jsxEquals.ANY = function JsxEqualsAny(){};
 
@@ -38,6 +39,9 @@ export default function jsxEquals(original, template, opts={}, state={path: ''})
   if (allowExtraProps) {
     propDiff.added = [];
   }
+  propDiff.updated = propDiff.updated.filter((key) => {
+    return typeof template.props[key] !== 'function' && !deepEquals(template.props[key], original.props[key]);
+  });
   if (propDiff.updated.length && propDiff.added.length || propDiff.updated.length || propDiff.deleted.length) {
     return makeError('Props don\'t match %0', {
       added: propDiff.deleted,
