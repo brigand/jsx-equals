@@ -3,7 +3,15 @@ import jsxEquals from '../src/';
 import {expect} from 'chai';
 
 const jsxNotEquals = (...args) => {
-  expect(() => jsxEquals(...args)).to.throw();
+  expect(() => {
+    try {
+      jsxEquals(...args)
+    } catch (e) {
+      console.error('expected error: ' + e.message);
+      throw e;
+    }
+  }).to.throw();
+
 }
 
 describe('jsxEquals', () => {

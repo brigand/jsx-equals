@@ -43,13 +43,12 @@ export default function jsxEquals(original, template, opts={}, state={path: ''})
     return typeof template.props[key] !== 'function' && !deepEquals(template.props[key], original.props[key]);
   });
   if (propDiff.updated.length && propDiff.added.length || propDiff.updated.length || propDiff.deleted.length) {
-    return makeError('Props don\'t match \n%0 values: \n%1\n%2', {
-      added: propDiff.deleted,
-      updated: propDiff.updated,
-      deleted: propDiff.added,
-    },
-    original.props[key],
-    template.props[key]
+    const makeMessage = (keys) => keys.map((key) => ({key, left: original.props[key], right: template.props[key]}))
+    return makeError('Props don\'t match \n%0', {
+      added: makeMessage(propDiff.deleted),
+      updated: makeMessage(propDiff.updated),
+      deleted: makeMessage(propDiff.added),
+    }
     );
   }
 
