@@ -2,6 +2,7 @@ import {Children} from 'react';
 import {inspect} from 'util';
 import shallowDiff from 'shallow-diff';
 import deepEquals from 'deep-equal';
+import compareJsxTypes from './compareJsxTypes';
 
 const ANY = jsxEquals.ANY = function JsxEqualsAny(){};
 
@@ -25,11 +26,11 @@ export default function jsxEquals(original, template, opts={}, state={path: ''})
   const {allowExtraProps} = opts;
 
   // compare type
-  if (template.type !== ANY && original.type !== template.type) {
+  if (template.type !== ANY && !compareJsxTypes(original.type, template.type)) {
     return makeError('Types %0 and %1 are not equal', original.type, template.type);
   }
 
-  // compare propsA
+  // compare props
   const cleanProps = (props) => Object.keys(props).reduce((acc, key) => {
     if (key !== 'children' && key[0] !== '_') acc[key] = props[key];
     return acc;

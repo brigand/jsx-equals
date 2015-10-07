@@ -118,6 +118,14 @@ describe('jsxEquals', () => {
     jsxEquals(<div />, <jsxEquals.ANY />);
   });
 
+
+  it('works with c-Name', () => {
+    class Foo {};
+    jsxEquals(<c-Foo />, <Foo />);
+    jsxEquals(<Foo />, <c-Foo />);
+    jsxNotEquals(<c-Bar />, <Foo />);
+    jsxNotEquals(<Foo />, <c-Bar />);
+  });
 });
 
 
